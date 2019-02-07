@@ -1,3 +1,15 @@
+# -*- coding:utf-8 -*-
+
+'''
+k近邻分类算法
+    * 距离计算
+    * 文本数据转换为数据集
+    * Matplotlib创建扩散图
+    * 归一化数据
+    * 预测约会网站对象的喜欢程度
+    * 识别手写数字
+'''
+
 import numpy as np
 import operator
 import matplotlib
@@ -6,12 +18,25 @@ import os
 
 
 def create_data_set():
+    '''
+    创建初始数据集合
+    :return:
+    '''
     data_set = np.array([
         [1.0, 1.1], [1.0, 1.0], [0, 0], [0, 0.1]])
     labels = ['A', 'A', 'B', 'B']
     return data_set, labels
 
+
 def classify0(in_x, data_set, labels, k):
+    '''
+    计算距离,这里用的是欧氏距离
+    :param in_x: 输入向量
+    :param data_set: 训练样本集
+    :param labels: 标签向量
+    :param k:
+    :return:
+    '''
     data_set_size = data_set.shape[0]
     diff_mat = np.tile(in_x, (data_set_size, 1)) - data_set
     sq_diff_mat = diff_mat**2
@@ -27,6 +52,11 @@ def classify0(in_x, data_set, labels, k):
     return sorted_class_count
 
 def file2matrix(filename):
+    '''
+    将文本数据转换为numpy中矩阵的形式
+    :param filename:
+    :return:
+    '''
     fr = open(filename)
     array_on_lines = fr.readlines()
     number_of_lines = len(array_on_lines)
@@ -41,7 +71,13 @@ def file2matrix(filename):
         index += 1
     return return_mat, class_label_vector
 
+
 def auto_norm(data_set):
+    '''
+    对不同大小的数值进行归一化
+    :param data_set:
+    :return:
+    '''
     min_vals = data_set.min(0)
     max_vals = data_set.max(0)
     ranges = max_vals - min_vals
@@ -51,7 +87,12 @@ def auto_norm(data_set):
     norm_data_set = norm_data_set / np.tile(ranges, (m ,1))
     return norm_data_set, ranges, min_vals
 
+
 def dating_class_test():
+    '''
+    处理约会数据集
+    :return:
+    '''
     ho_ratio = 0.10
     dating_data_mat, dating_labels = file2matrix('datingTestSet2.txt')
     norm_mat, ranges, min_vals = auto_norm(dating_data_mat)
@@ -66,7 +107,12 @@ def dating_class_test():
         if (classifier_result[0][0] != dating_labels[i]) : error_count += 1.0
     print 'the total error rate is: %f' % (error_count/ float(num_test_vecs))
 
+
 def classify_person():
+    '''
+    接收用户输入,预测约会对象的喜欢程度
+    :return:
+    '''
     result_list = ['not at all', 'in small doses', 'in large doses']
     percent_tats = float(raw_input('percentage of time spent playing video games?'))
     ff_miles = float(raw_input('frequent flier miles earned per year?'))
@@ -80,6 +126,11 @@ def classify_person():
 
 
 def img2vector(filename):
+    '''
+    文本数据转换为向量
+    :param filename:
+    :return:
+    '''
     return_vect = np.zeros((1, 1024))
     fr = open(filename)
     for i in range(32):
@@ -90,6 +141,10 @@ def img2vector(filename):
     return return_vect
 
 def hand_writing_class_test():
+    '''
+    使用k临近算法识别手写数字
+    :return:
+    '''
     hw_labels = []
     training_file_list = os.listdir('digits/testDigits')
     m = len(training_file_list)
@@ -116,26 +171,25 @@ def hand_writing_class_test():
     print '\nthe total error rate is: %f' % (error_count/float(m_test))
 
 
-
-
-
 if __name__ == '__main__':
-    # kNN demo1
+    pass
+    # 计算距离
     # g, l = create_data_set()
     # print classify0([0, 0], g, l, 3)
-    # kNN demo2
+    # 文本数据转换为矩阵数据
     # dating_data_mat, labels = file2matrix('datingTestSet2.txt')
     # print dating_data_mat, labels
+    # 展示数据
     # fig = plt.figure()
     # ax = fig.add_subplot(111)
     # ax.scatter(dating_data_mat[:, 1], dating_data_mat[:, 2],
     #     15.0 * np.array(labels), 15.0 * np.array(labels))
     # plt.show()
-    # kNN demo3
+    # 使用不同颜色展示数据点
     # ax.scatter(dating_data_mat[:, 0], dating_data_mat[:, 1],
     #     15.0 * np.array(labels), 15.0 * np.ar''ray(labels))
     # plt.show()  
-    # norm process
+    # 归一化数据
     # norm_data_set, ranges, min_vals = auto_norm(dating_data_mat)
     # ax.scatter(norm_data_set[:, 0], norm_data_set[:, 1],
     #     15.0 * np.array(labels), 15.0 * np.array(labels))
@@ -144,4 +198,5 @@ if __name__ == '__main__':
     # classify_person()
     # test_vector = img2vector('digits/testDigits/0_13.txt')
     # print test_vector[0, 0:31]
-    hand_writing_class_test()
+    # 手写文字识别
+    # hand_writing_class_test()
