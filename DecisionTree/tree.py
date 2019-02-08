@@ -5,7 +5,7 @@
     * 计算熵和信息增益
     * 多数表决法
     * 绘制树形图
-    *
+    * 使用决策树预测隐形眼镜类型
 '''
 import operator
 from math import log
@@ -134,6 +134,18 @@ def classify(input_tree, feat_labels, test_vec):
     return class_label
 
 
+def store_tree(input_tree, filename):
+    import pickle
+    with open(filename, 'w') as fw:
+        pickle.dump(input_tree, fw)
+
+
+def grab_tree(filename):
+    import pickle
+    fr = open(filename)
+    return pickle.load(fr)
+
+
 if __name__ == '__main__':
     my_data, my_label = create_data_set()
     # print my_data
@@ -148,7 +160,15 @@ if __name__ == '__main__':
     # 获取信息增益最大的特征
     # print choose_best_feature_to_split(my_data)
     # 创建一颗决策树
-    _, labels = create_data_set()
-    my_tree = tree_plotter.retrieve_tree(0)
-    print classify(my_tree, labels, [0, 0])
-    print classify(my_tree, labels, [1, 1])
+    # _, labels = create_data_set()
+    # my_tree = tree_plotter.retrieve_tree(0)
+    # print classify(my_tree, labels, [0, 0])
+    # print classify(my_tree, labels, [1, 1])
+    # store_tree(my_tree, 'classifier_storage.txt')
+    # print grab_tree('classifier_storage.txt')
+    fr = open('lenses.txt')
+    lenses = [inst.strip().split('\t') for inst in fr.readlines()]
+    lenses_labels = ['age', 'prescript', 'astigmatic', 'tear_rate']
+    lenses_tree = create_tree(lenses, lenses_labels)
+    print lenses_tree
+    tree_plotter.create_plot(lenses_tree)
