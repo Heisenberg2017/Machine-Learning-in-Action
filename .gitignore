@@ -1,0 +1,12 @@
+# Byte-compiled / optimized / DLL files
+
+# python
+*.py[cod]
+
+local_settings.py
+*.zip
+*.log
+.idea
+.idea/*
+.idea/vcs.xml
+.vscode/*
