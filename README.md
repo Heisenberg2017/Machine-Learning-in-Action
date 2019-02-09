@@ -28,7 +28,16 @@ Matplotlib创建散点图帮助理解数据之间的关系，通过散点图可�
 图形化展示了隐形眼镜数据集在ID3算法上生成的决策树
 
 ###### 案例来源: [Machine-Learning-in-Action][decision-ID3-tree-demo-source]
-###### 决策树: [Wikipedia][decision-tree-algorithm]
+###### 决策树: [Wikipedia][decision-tree]
+
+### 朴素贝叶斯
+
+#### 使用朴素贝叶斯过滤垃圾邮件
+
+#### 使用朴素贝叶斯从个人广告中获取区域倾向
+
+###### 案例来源: [Machine-Learning-in-Action][naive-bayesian-demo-source]
+###### 朴素贝叶斯分类器: [Wikipedia][naive-bayes-classifier]
 
 
 
@@ -42,8 +51,10 @@ Matplotlib创建散点图帮助理解数据之间的关系，通过散点图可�
 
 
 [k-nearest-neighbors-algorithm]: https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm
-[decision-tree-algorithm]: https://en.wikipedia.org/wiki/Decision_tree
+[decision-tree]: https://en.wikipedia.org/wiki/Decision_tree
+[naive-bayes-classifier]: https://en.wikipedia.org/wiki/Naive_Bayes_classifier
 
 
 [k-nearest-neighbors-demo-source]: https://livebook.manning.com/#!/book/machine-learning-in-action/chapter-2/
 [decision-ID3-tree-demo-source]: https://livebook.manning.com/#!/book/machine-learning-in-action/chapter-3/
+[naive-bayesian-demo-source]: https://livebook.manning.com/#!/book/machine-learning-in-action/chapter-4/
