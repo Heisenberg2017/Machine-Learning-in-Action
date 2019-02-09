@@ -7,9 +7,11 @@
 ### k-近邻算法
 Matplotlib创建扩散图帮助理解数据之间的关系
 ### 预测约会网站对象的喜欢程度
-![alt text][dating-image-1]
+![alt text][knn-dating-image-1]
+![alt text][knn-dating-image-2]
 ##### 识别手写数字
-
+![alt text][knn-number-image-1]
+![alt text][knn-number-image-2]
 此处应该有图
 此处应为维基百科的链接
  
@@ -22,4 +24,7 @@ Matplotlib创建扩散图帮助理解数据之间的关系
 
 
 
-[dating-image-1]: https://github.com/Heisenberg2017/Machine-Learning-in-Action/blob/master/images/DatingData1.gif "Dating Plot"
+[knn-dating-image-1]: https://github.com/Heisenberg2017/Machine-Learning-in-Action/blob/master/images/kNNDating1.gif "kNN Dating Plot"
+[knn-dating-image-2]: https://github.com/Heisenberg2017/Machine-Learning-in-Action/blob/master/images/kNNDating2.gif "kNN Dating Plot"
+[knn-number-image-1]: https://github.com/Heisenberg2017/Machine-Learning-in-Action/blob/master/images/kNNNumber1.gif "kNN Number Data"
+[knn-number-image-2]: https://github.com/Heisenberg2017/Machine-Learning-in-Action/blob/master/images/kNNNumber8.gif "kNN Number Data"
