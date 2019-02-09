@@ -19,6 +19,7 @@ Matplotlib创建散点图帮助理解数据之间的关系，通过散点图可�
 
 使用k-近邻算法识别手写数字
 
+###### 案例来源: [Machine-Learning-in-Action][k-nearest-neighbors-demo-source]
 ###### k近邻算法: [Wikipedia][k-nearest-neighbors-algorithm]
  
  __决策树__
@@ -36,3 +37,6 @@ Matplotlib创建散点图帮助理解数据之间的关系，通过散点图可�
 [knn-number-image-2]: https://github.com/Heisenberg2017/Machine-Learning-in-Action/blob/master/images/kNNNumber8.gif "kNN Number Data"
 
 [k-nearest-neighbors-algorithm]: https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm
+
+
+[k-nearest-neighbors-demo-source]: https://livebook.manning.com/#!/book/machine-learning-in-action/chapter-2/
