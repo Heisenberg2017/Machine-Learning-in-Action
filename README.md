@@ -19,8 +19,8 @@ Matplotlib创建散点图帮助理解数据之间的关系，通过散点图可�
 
 使用k-近邻算法识别手写数字
 
-###### 案例来源: [Machine-Learning-in-Action][k-nearest-neighbors-demo-source]
-###### k近邻算法: [Wikipedia][k-nearest-neighbors-algorithm]
+###### 案例来源: [Machine-Learning-in-Action][decision-ID3-tree-demo-source]
+###### k近邻算法: [Wikipedia][k-nearest-neighbors-demo-source]
  
 ### 决策树
 
