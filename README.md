@@ -22,11 +22,14 @@ Matplotlib创建散点图帮助理解数据之间的关系，通过散点图可�
 ###### 案例来源: [Machine-Learning-in-Action][k-nearest-neighbors-demo-source]
 ###### k近邻算法: [Wikipedia][k-nearest-neighbors-algorithm]
  
- __决策树__
-  * 计算熵和信息增益
-  * 多数表决法
-  * 绘制树形图
-  * 使用决策树预测隐形眼镜类型
+### 决策树
+
+#### 使用ID3决策树预测隐形眼镜类型
+![alt text][decision-tree-image-1]
+
+###### 案例来源: [Machine-Learning-in-Action][decision-tree-algorithm]
+###### 决策树: [Wikipedia][decision-ID3-tree-demo-source]
+
 
 
 
@@ -35,8 +38,12 @@ Matplotlib创建散点图帮助理解数据之间的关系，通过散点图可�
 [knn-dating-image-2]: https://github.com/Heisenberg2017/Machine-Learning-in-Action/blob/master/images/kNNDating2.gif "kNN Dating Plot"
 [knn-number-image-1]: https://github.com/Heisenberg2017/Machine-Learning-in-Action/blob/master/images/kNNNumber1.gif "kNN Number Data"
 [knn-number-image-2]: https://github.com/Heisenberg2017/Machine-Learning-in-Action/blob/master/images/kNNNumber8.gif "kNN Number Data"
+[decision-tree-image-1]: https://github.com/Heisenberg2017/Machine-Learning-in-Action/blob/master/images/DecisionTree1.gif "Decision Tree ID3"
+
 
 [k-nearest-neighbors-algorithm]: https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm
+[decision-tree-algorithm]: https://en.wikipedia.org/wiki/Decision_tree
 
 
 [k-nearest-neighbors-demo-source]: https://livebook.manning.com/#!/book/machine-learning-in-action/chapter-2/
+[decision-ID3-tree-demo-source]: https://livebook.manning.com/#!/book/machine-learning-in-action/chapter-3/
