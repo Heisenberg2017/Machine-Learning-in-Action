@@ -29,8 +29,8 @@ Matplotlib创建散点图帮助理解数据之间的关系，通过散点图可�
 
 图形化展示了隐形眼镜数据集在ID3算法上生成的决策树
 
-###### 案例来源: [Machine-Learning-in-Action][decision-tree-algorithm]
-###### 决策树: [Wikipedia][decision-ID3-tree-demo-source]
+###### 案例来源: [Machine-Learning-in-Action][decision-ID3-tree-demo-source]
+###### 决策树: [Wikipedia][decision-tree-algorithm]
 
 
 
