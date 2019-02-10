@@ -9,6 +9,7 @@
 
 import random
 import numpy as np
+import feedparser
 
 
 def load_data_set():
@@ -92,7 +93,8 @@ def testing_NB():
 def bag_of_words2vec_MN(vocab_list, input_set):
     return_vec = [0] * len(vocab_list)
     for word in input_set:
-        return_vec[vocab_list.index(word)] += 1
+        if word in vocab_list:
+            return_vec[vocab_list.index(word)] += 1
     return return_vec
 
 
@@ -139,6 +141,79 @@ def spam_test():
     print 'the error rate is: ', float(error_count) / len(test_set)
 
 
+def calc_most_freq(vocab_list, full_text):
+    import operator
+    freq_dict = {}
+    for token in vocab_list:
+        freq_dict[token] = full_text.count(token)
+    sorted_freq = sorted(freq_dict.iteritems(), key=operator.itemgetter(1),
+                         reverse=True)
+    return sorted_freq[:20]
+
+
+def local_words(feed1, feed0):
+    import feedparser
+    doc_list = []
+    class_list = []
+    full_text = []
+    min_len = min(len(feed1['entries']), len(feed0['entries']))
+    for i in range(min_len):
+        word_list = text_parse(feed1['entries'][i]['summary'])
+        doc_list.append(word_list)
+        full_text.extend(word_list)
+        class_list.append(1)
+        word_list = text_parse(feed0['entries'][i]['summary'])
+        doc_list.append(word_list)
+        full_text.extend(word_list)
+        class_list.append(0)
+    vocab_list = create_vocab_list(doc_list)
+    top30_words = calc_most_freq(vocab_list, full_text)
+    for pair_w in top30_words:
+        if pair_w[0] in vocab_list:
+            vocab_list.remove(pair_w[0])
+    training_set = range(2 * min_len)
+    test_set = []
+    for i in range(10):
+        rand_index = int(random.uniform(0, len(training_set)))
+        test_set.append(training_set[rand_index])
+        del(training_set[rand_index])
+    train_mat = []
+    train_classes = []
+    for doc_index in training_set:
+        train_mat.append(bag_of_words2vec_MN(vocab_list, doc_list[doc_index]))
+        train_classes.append(class_list[doc_index])
+        p0_v, p1_v, p_spam = train_nb0(np.array(train_mat), np.array(train_classes))
+        error_count = 0
+        for doc_index in test_set:
+            word_vector = bag_of_words2vec_MN(vocab_list, doc_list[doc_index])
+            if classify_NB(np.array(word_vector), p0_v, p1_v, p_spam) != class_list[doc_index]:
+                error_count += 1
+        print 'the error rate is: ', float(error_count) / len(test_set)
+        return vocab_list, p0_v, p1_v
+
+
+def get_top_words(rss0, rss1):
+    import operator
+    vocab_list, p0_v, p1_v = local_words(rss0, rss1)
+    top_rss0 = []
+    top_rss1 = []
+    for i in range(len(p0_v)):
+        if p0_v[i] > -6.0:
+            top_rss0.append((vocab_list[i], p0_v[i]))
+        if p1_v[i] > -6.0:
+            top_rss1.append((vocab_list[i], p1_v[i]))
+    sorted_rss0 = sorted(top_rss0, key=lambda pair: pair[1], reverse=True)
+    print '**rss0**rss0**rss0**rss0**rss0**rss0**'
+    for item in sorted_rss0[:5]:
+        print item
+    sorted_rss1 = sorted(top_rss1, key=lambda pair: pair[1], reverse=True)
+    print '**rss1**rss1**rss1**rss1**rss1**rss1**'
+    for item in sorted_rss1[:5]:
+        print item
+
+
+
+
 if __name__ == '__main__':
     # list_o_posts, list_classes = load_data_set()
     # my_vocab_list = create_vocab_list(list_o_posts)
@@ -153,4 +228,12 @@ if __name__ == '__main__':
     # print p1_v
     # print p_ab
     # testing_NB()
-    spam_test()
+    # spam_test()
+    rss0 = feedparser.parse('https://sports.yahoo.com/nba/rss.xml')
+    rss1 = feedparser.parse('http://www.nasa.gov/rss/dyn/image_of_the_day.rss')
+    vocab_list, p_rss0, p_rss1 = local_words(rss0, rss1)
+    vocab_list, p_rss0, p_rss1 = local_words(rss0, rss1)
+    vocab_list, p_rss0, p_rss1 = local_words(rss0, rss1)
+    vocab_list, p_rss0, p_rss1 = local_words(rss0, rss1)
+    print '**top**top**top**top**top**top**'
+    get_top_words(rss0, rss1)
